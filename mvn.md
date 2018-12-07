@@ -1,0 +1,129 @@
+# Example
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.4.3</version>
+            <configuration>
+                <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <mainClass>com.data.com.IdnumAsyncClient</mainClass>
+                    </transformer>
+                </transformers>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <descriptors>
+                    <descriptor>src/main/assembly/assembly.xml</descriptor>
+                </descriptors>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>2.4.3</version>
+            <!--<configuration>-->
+                <!--<transformers>-->
+                    <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+                        <!--<mainClass>SparkTest</mainClass>-->
+                    <!--</transformer>-->
+                <!--</transformers>-->
+            <!--</configuration>-->
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <minimizeJar>true</minimizeJar>
+                        <artifactSet>
+                            <includes>
+                                <include>com.data.demo.spark2</include>
+                                <include>org.apache.hadoop:hadoop-common:3.1.1</include>
+                                <include>io.confluent</include>
+                                <include>org.apache.spark:spark-streaming-kafka-0-10_2.11</include>
+                                <include>org.apache.spark:spark-streaming_2.11</include>
+                                <include>org.apache.hbase</include>
+                                <include>org.apache.hbase.thirdparty</include>
+                            </includes>
+                        </artifactSet>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>8</source>
+                <target>8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+```
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.0</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <!--<minimizeJar>true</minimizeJar>-->
+                        <artifactSet>
+                            <includes>
+                                <include>io.confluent</include>
+                                <!--<include>org.apache.kafka</include>-->
+                            </includes>
+                        </artifactSet>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
