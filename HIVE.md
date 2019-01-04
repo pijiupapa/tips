@@ -13,8 +13,7 @@
 修改表
 
 `ALTER TABLE db.tableName
-set serde 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
-WITH SERDEPROPERTIES ('separatorChar'='\u0001','serialization.null.format'='','quoteChar'='\"');`
+set SERDEPROPERTIES ('field.delim'=',','serialization.null.format'='\\N','quoteChar'='\"');`
 
 本地文件导入
 
